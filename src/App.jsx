@@ -17,7 +17,7 @@ const CardList = (props) => (
     {/* <Card {...testData[0]} />
     <Card {...testData[1]} /> 
     <Card {...testData[2]} /> */}
-    {testData.map(profile => <Card {...profile}/>)}
+    {props.profiles.map(profile => <Card {...profile}/>)}
   </div>
 );
 //Converts the testData object into what is below this line.
@@ -42,13 +42,35 @@ class Card extends React.Component {
   }
 }
 
+class Form extends React.Component {
+  render() {
+    return(
+      <form action="">
+        <input type="text" placeholder="Github username" /> 
+        <button>Add Card</button>
+      </form>
+    );
+  }
+}
+
 //Every class must have a render function 
 class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//     profiles: testData,
+//   };
+// }
+state = {
+  profiles: testData,
+};
+
   render() {
     return (
       <div>
     <div className="header">{this.props.title}</div>
-    <CardList />
+    <Form />
+    <CardList profiles={this.state.profiles}/>
     </div>
     );
   }
